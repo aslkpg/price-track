@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Price Track</title>
   <style> 
     body, html { 
@@ -10,33 +10,39 @@
       padding: 0; 
       height: 100%; 
       width: 100%;
-      overflow: hidden; 
-    }
-    /* Kotak pembungkus rahasia */
-    .wrapper-bingkai {
-      width: 100%;
-      height: 100%;
       overflow: hidden;
-      position: relative;
-    }
-    iframe { 
-      width: 100%; 
-      /* Melebihkan tinggi sebesar 50px untuk mengganti area yang terpotong */
-      height: calc(100% + 50px); 
-      border: none; 
-      display: block;
+      background-color: #f8f9fa;
+    } 
+    .crop-container {
       position: absolute;
-      /* Menarik aplikasi ke atas sebesar 50px untuk menutupi bar Google */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: calc(100% + 50px); 
+      overflow: hidden;
+    }
+    .crop-container iframe { 
+      position: absolute;
       top: -50px; 
       left: 0;
+      width: 100%; 
+      height: 100%; 
+      border: none; 
+      display: block;
     } 
   </style>
 </head>
 <body>
 
-  <div class="wrapper-bingkai">
+  <div class="crop-container">
+    <!-- 
+      KUNCI ANTI-REFUSED & ALLOW GEOLOCATION DI GITHUB:
+      1. Ditambahkan ?authuser=0 agar Google tidak bingung mencari akun saat di-refresh.
+      2. Atribut 'allow' disetel lengkap dengan wildcard (*) agar GitHub meneruskan izin GPS ke server Google.
+    -->
     <iframe 
-      src="https://script.google.com/macros/s/AKfycbxyt3PV9zvXU7TRkoVUKTAJK36NUGlb0d5BtSE5HvDUVMct6px2oZxpa12VVJkf5q4F/exec"
+      src="https://script.google.com/macros/s/AKfycbxyt3PV9zvXU7TRkoVUKTAJK36NUGlb0d5BtSE5HvDUVMct6px2oZxpa12VVJkf5q4F/exec?authuser=0"
+      allow="geolocation *; clipboard-write"
       sandbox="allow-same-origin allow-forms allow-scripts allow-popups allow-downloads allow-modals allow-popups-to-escape-sandbox">
     </iframe>
   </div>
