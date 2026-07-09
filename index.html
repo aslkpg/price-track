@@ -10,21 +10,36 @@
       padding: 0; 
       height: 100%; 
       width: 100%;
-      overflow: hidden; /* Mencegah double scrollbar */
-    } 
+      overflow: hidden; 
+    }
+    /* Kotak pembungkus rahasia */
+    .wrapper-bingkai {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+    }
     iframe { 
       width: 100%; 
-      height: 100%; 
+      /* Melebihkan tinggi sebesar 50px untuk mengganti area yang terpotong */
+      height: calc(100% + 50px); 
       border: none; 
       display: block;
+      position: absolute;
+      /* Menarik aplikasi ke atas sebesar 50px untuk menutupi bar Google */
+      top: -50px; 
+      left: 0;
     } 
   </style>
 </head>
 <body>
 
-  <iframe 
-    src="https://script.google.com/macros/s/AKfycbxyt3PV9zvXU7TRkoVUKTAJK36NUGlb0d5BtSE5HvDUVMct6px2oZxpa12VVJkf5q4F/exec?authuser=0">
-  </iframe>
+  <div class="wrapper-bingkai">
+    <iframe 
+      src="https://script.google.com/macros/s/AKfycbxyt3PV9zvXU7TRkoVUKTAJK36NUGlb0d5BtSE5HvDUVMct6px2oZxpa12VVJkf5q4F/exec"
+      sandbox="allow-same-origin allow-forms allow-scripts allow-popups allow-downloads allow-modals allow-popups-to-escape-sandbox">
+    </iframe>
+  </div>
 
 </body>
 </html>
